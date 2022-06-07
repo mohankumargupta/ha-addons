@@ -1,0 +1,29 @@
+name: "Icecast"
+description: "An icecast2 server with ffmpeg streams hosted"
+url: "http://github.com/mohankumargupta/ha-addons/icecast"
+version: "0.0.12"
+slug: "icecast"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: services
+ingress: true
+ingress_port: 8099
+ingress_stream: true
+panel_icon: mdi:radio
+ports:
+  8000/tcp: 8000
+options:
+  streams:
+    - name: iHeartRadio Cafe
+      mountpoint: iheartcafe
+      stream_url: https://stream.revma.ihrhls.com/zc6951/hls.m3u8
+schema:
+  streams:
+    - name: str
+      mountpoint: str
+      stream_url: str
