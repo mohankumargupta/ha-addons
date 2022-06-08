@@ -40,7 +40,7 @@ Mountpoint is the HTTP endpoint on the Icecast server that is available to your 
 
 The full media URLs is in the following form:
 
-**http://HA_IP_ADDRESS:8000/MOUNTPOINT**
+**http://<HA_IP_ADDRESS>:8000/<MOUNTPOINT\>**
 
 where HA_IP_ADDRESS is the LAN IP address of the Home Assistant instance
 
@@ -51,6 +51,8 @@ The mountpoint must be unique for each stream that you want to push to the Iceca
 # Additional info
 
 admin/relay/source password is password
+
+Icecast docs [here](https://www.icecast.org/docs/icecast-trunk/)
 
 [default_configuration]: https://raw.githubusercontent.com/mohankumargupta/icecast/master/images/default-configuration.png
 [icecast_default_config]: https://raw.githubusercontent.com/mohankumargupta/icecast/master/images/icecast-default-configuration.png
