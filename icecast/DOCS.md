@@ -39,6 +39,7 @@ This property is shown as **Stream Description** on the Icecast dashboard
 Mountpoint is the HTTP endpoint on the Icecast server that is available to your client devices(VLC player, Google Home Mini) to play the stream.
 
 The full media URLs is in the following form:
+
 **http://<HA_IP_ADDRESS>:8000/<MOUNTPOINT>**
 
 where HA_IP_ADDRESS is the LAN IP address of the Home Assistant instance
@@ -53,3 +54,5 @@ admin/relay/source password is password
 
 [default_configuration]: https://raw.githubusercontent.com/mohankumargupta/icecast/master/images/default-configuration.png
 [icecast_default_config]: https://raw.githubusercontent.com/mohankumargupta/icecast/master/images/icecast-default-configuration.png
+
+
