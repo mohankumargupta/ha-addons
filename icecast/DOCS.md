@@ -47,5 +47,9 @@ eg. if your home assistant IP address is 192.168.1.10, and the mountpoint is ihe
 
 The mountpoint must be unique for each stream that you want to push to the Icecast server, and contain no spaces.
 
+### Additional info
+
+admin/relay/source password is password
+
 [default_configuration]: https://raw.githubusercontent.com/mohankumargupta/icecast/master/images/default-configuration.png
 [icecast_default_config]: https://raw.githubusercontent.com/mohankumargupta/icecast/master/images/icecast-default-configuration.png
