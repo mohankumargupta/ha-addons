@@ -40,7 +40,7 @@ Mountpoint is the HTTP endpoint on the Icecast server that is available to your 
 
 The full media URLs is in the following form:
 
-**http://<HA_IP_ADDRESS>:8000/<MOUNTPOINT>**
+**http://HA_IP_ADDRESS:8000/MOUNTPOINT**
 
 where HA_IP_ADDRESS is the LAN IP address of the Home Assistant instance
 
