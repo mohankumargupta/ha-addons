@@ -21,7 +21,7 @@ jobs:
         run: |
           declare -a addons
           for addon in $(find ./ -name config.yaml | cut -d "/" -f2 | sort -u); do
-            addons+=("\"$addon\",");
+            addons+=("\"${addon}\",");
           done
           result=$(${addons[@]} | rev | cut -c 2- | rev)
           echo "::set-output name=addons::${result}"
