@@ -12,7 +12,7 @@ jobs:
     name: Initialize build
     runs-on: ubuntu-latest
     outputs:
-      addons: ${{ steps.info.outputs.addons }}    
+      addons: ${{ steps.addons.outputs.addons }}    
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: List addons
         run: |
-         echo "${{ needs.init.outputs.addons }}"
+          echo "${{ needs.init.outputs.addons }}"
 #      - name: Test build
 #        uses: home-assistant/builder@master
 #        with:
