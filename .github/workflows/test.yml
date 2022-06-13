@@ -8,15 +8,8 @@ on:
     #    required: true
 
 jobs:
-  init:
-    name: Initialize build
-    runs-on: ubuntu-latest 
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2
   build:
     name: Build ${{ matrix.arch }} ${{ matrix.addon }} add-on
-    needs: init
     runs-on: ubuntu-latest
     strategy:
       matrix:
