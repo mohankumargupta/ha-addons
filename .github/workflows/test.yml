@@ -21,9 +21,10 @@ jobs:
         run: |
           declare -a addons
           for addon in $(find ./ -name config.yaml | cut -d "/" -f2 | sort -u); do
-            addons+=("$addon");
+            addons+=("\"$addon\",");
           done
-          echo "::set-output name=addons::${addons[@]}"
+          result=$(${addons[@]} | rev | cut -c 2- | rev)
+          echo "::set-output name=addons::${result}"
   build:
     name: Build $${{ matrix.arch }} $${{ matrix.addon }} add-on
     needs: init
