@@ -25,13 +25,25 @@ jobs:
           done
           echo "::set-output name=addons::${addons[@]}"
   build:
-    name: Build
+    name: Build $${{ matrix.arch }} $${{ matrix.addon }} add-on
     needs: init
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        addon: ${{ fromJson(needs.init.outputs.addons) }}
+        arch: []
     steps:
-      - name: List addons
-        run: |
-          echo "${{ needs.init.outputs.addons }}"
+      #- name: List addons
+      #  run: |
+      #    echo "${{ needs.init.outputs.addons }}"
+      - name: Check out repository
+        uses: actions/checkout@v2.4.0
+
+      - name: Get information
+        id: info
+        uses: home-assistant/actions/helpers/info@master
+        with:
+          path: "./${{ matrix.addon }}"      
 #      - name: Test build
 #        uses: home-assistant/builder@master
 #        with:
