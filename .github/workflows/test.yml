@@ -10,28 +10,17 @@ on:
 jobs:
   init:
     name: Initialize build
-    runs-on: ubuntu-latest
-    outputs:
-      addons: ${{ steps.addons.outputs.addons }}    
+    runs-on: ubuntu-latest 
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
-      - name: Get add-ons
-        id: addons
-        run: |
-          declare -a addons
-          for addon in $(find ./ -name config.yaml | cut -d "/" -f2 | sort -u); do
-            addons+=("\"${addon}\",");
-          done
-          result=$(${addons[@]} | rev | cut -c 2- | rev)
-          echo "::set-output name=addons::${result}"
   build:
     name: Build $${{ matrix.arch }} $${{ matrix.addon }} add-on
     needs: init
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        addon: ${{ fromJson(needs.init.outputs.addons) }}
+        addon: ["icecast"]
         arch: ["aarch64", "amd64", "armhf", "armv7", "i386"]
     steps:
       #- name: List addons
