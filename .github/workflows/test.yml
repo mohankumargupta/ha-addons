@@ -2,10 +2,10 @@ name: "Test push to docker hub"
 
 on: 
   workflow_dispatch:
-    inputs:
-      releasename:
-        description: Release Version
-        required: true
+    #inputs:
+    #  releasename:
+    #    description: Release Version
+    #    required: true
 
 jobs:
   init:
@@ -23,10 +23,10 @@ jobs:
           for addon in $(find ./ -name config.yaml | cut -d "/" -f2 | sort -u); do
             addons+=("$addon");
           done
-          echo "::set-output name=addons::${addons[@]}"     
+          echo "::set-output name=addons::${addons[@]}"
       - name: List add-ons
         run: |
-          echo "${{ steps.addons.output.addons }}"   
+          find / -name config.yaml  
 #      - name: Get information
 #        id: info
 #        uses: home-assistant/actions/helpers/info@master
