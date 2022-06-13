@@ -15,7 +15,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
   build:
-    name: Build $${{ matrix.arch }} $${{ matrix.addon }} add-on
+    name: Build ${{ matrix.arch }} ${{ matrix.addon }} add-on
     needs: init
     runs-on: ubuntu-latest
     strategy:
