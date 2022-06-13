@@ -32,7 +32,7 @@ jobs:
         with:
           args: |
             --test \
-            --${{ matrix.addon }} \
+            --${{ matrix.arch }} \
             --target icecast \
             --docker-hub mohankumargupta
 
