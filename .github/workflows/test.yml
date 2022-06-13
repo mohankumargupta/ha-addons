@@ -8,18 +8,23 @@ on:
         required: true
 
 jobs:
-  build:
-    name: Test build
+  init:
+    name: Initialize build
     runs-on: ubuntu-latest
+    outputs:
+      architectures: ${{ steps.info.outputs.architectures }}    
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
-      - name: Test build
-        uses: home-assistant/builder@master
-        with:
-          args: |
-            --test \
-            --all \
-            --target icecast \
-            --docker-hub mohankumargupta
+      - name: Get information
+        id: info
+        uses: home-assistant/actions/helpers/info@master
+#      - name: Test build
+#        uses: home-assistant/builder@master
+#        with:
+#          args: |
+#            --test \
+#            --all \
+#            --target icecast \
+#            --docker-hub mohankumargupta
 
