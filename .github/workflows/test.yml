@@ -12,20 +12,26 @@ jobs:
     name: Initialize build
     runs-on: ubuntu-latest
     outputs:
-      architectures: ${{ steps.info.outputs.architectures }}    
+      addons: ${{ steps.info.outputs.addons }}    
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
-      - name: Get information
-        id: info
-        uses: home-assistant/actions/helpers/info@master
+      - name: Get add-ons
+        id: addons
+        run: |
+          declare -a addons
+          for addon in $(find ./ -name config.yaml | cut -d "/" -f2 | sort -u); do
+            addons+=("$addon");
+          done
+          echo "::set-output name=addons::${addons[@]}"
   build:
     name: Build
+    needs: init
     runs-on: ubuntu-latest
     steps:
       - name: List addons
         run: |
-         echo "${{ needs.init.outputs.architectures }}"
+         echo "${{ needs.init.outputs.addons }}"
 #      - name: Test build
 #        uses: home-assistant/builder@master
 #        with:
