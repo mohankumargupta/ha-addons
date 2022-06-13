@@ -16,12 +16,16 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
-      - name: List add-ons
+      - name: Get information
+        id: info
+        uses: home-assistant/actions/helpers/info@master
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: List addons
         run: |
-          find ./ -name config.yaml|cut -d "/" -f2| sort -u
-#      - name: Get information
-#        id: info
-#        uses: home-assistant/actions/helpers/info@master
+         echo "${{ needs.init.outputs.architectures }}"
 #      - name: Test build
 #        uses: home-assistant/builder@master
 #        with:
