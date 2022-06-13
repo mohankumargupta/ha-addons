@@ -26,7 +26,8 @@ jobs:
           echo "::set-output name=addons::${addons[@]}"
       - name: List add-ons
         run: |
-          find / -name config.yaml  
+          ls -l 
+          find ./ -name config.yaml  
 #      - name: Get information
 #        id: info
 #        uses: home-assistant/actions/helpers/info@master
