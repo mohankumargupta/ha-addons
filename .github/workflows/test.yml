@@ -1,4 +1,4 @@
-  name: "Test push to docker hub"
+name: "Test push to docker hub"
 
 on: 
   workflow_dispatch:
