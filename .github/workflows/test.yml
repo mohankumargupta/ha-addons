@@ -23,7 +23,10 @@ jobs:
           for addon in $(find ./ -name config.yaml | cut -d "/" -f2 | sort -u); do
             addons+=("$addon");
           done
-          echo "::set-output name=addons::${addons[@]}"        
+          echo "::set-output name=addons::${addons[@]}"     
+      - name: List add-ons
+        run: |
+          echo "${{ steps.addons.output.addons }}"   
 #      - name: Get information
 #        id: info
 #        uses: home-assistant/actions/helpers/info@master
