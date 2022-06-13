@@ -16,18 +16,9 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
-      - name: Get add-ons
-        id: addons
-        run: |
-          declare -a addons
-          for addon in $(find ./ -name config.yaml | cut -d "/" -f2 | sort -u); do
-            addons+=("$addon");
-          done
-          echo "::set-output name=addons::${addons[@]}"
       - name: List add-ons
         run: |
-          ls -l 
-          find ./ -name config.yaml  
+          find ./ -name config.yaml|cut -d "/" -f2| sort -u
 #      - name: Get information
 #        id: info
 #        uses: home-assistant/actions/helpers/info@master
