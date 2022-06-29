@@ -1,0 +1,33 @@
+#!/usr/bin/with-contenv bash
+set -e
+set -u
+set -o pipefail
+
+readonly NAME=${HAA_NAME}
+
+. /opt/${NAME}-support/lib/lib${NAME}.sh
+
+function stop() {
+  echo Signal
+  kill $PID
+}
+
+function main() {
+  echo "Start Logitech Media Server..."
+  # chnage buffering to line based for stdout sterr
+  stdbuf -oL -eL squeezeboxserver ${LMS_OPTIONS} --user "${LMS_USER}" --group "${LMS_GROUP}" --prefsdir "${LMS_PREFS}" --logdir "${LMS_LOGDIR}" --cachedir "${LMS_CACHE}" </dev/null &
+  PID=$!
+  echo -n "$PID" > ${TMP:-"/tmp"}/.${NAME}_ready
+  trap "stop" SIGTERM SIGINT
+  trap "" SIGHUP
+
+  wait "$PID"
+  exit $? 
+  ##FIXME
+  #su ${LMS_USER} -s /bin/sh -c 'stdbuf -oL -eL squeezeboxserver ${LMS_OPTIONS} --user "${LMS_USER}" --group "${LMS_GROUP}" --prefsdir "${LMS_PREFS}" --logdir "${LMS_LOGDIR}" --cachedir "${LMS_CACHE}"'
+  # --http-port? "${HTTP_PORT:-9000}"'
+  #sleep 7d
+}
+
+main
+# vim: ft=sh 
